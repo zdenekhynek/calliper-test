@@ -13,7 +13,7 @@ Install [Docker](https://www.docker.com/get-started/).
 
 Run `docker-compose build` - might take a while for frontend to build.
 
-### Launchnig
+### Launching
 
 Run `docker-compose up` - wait until yo see "frontend | Compiled successfully!" message; loads in around a 2-3 minutes.
 
