@@ -65,13 +65,33 @@ export async function postChartCommentThreads(
     data_point: dataPoint,
     comment: { user_name, text },
   };
+
   return await fetchApiData("chart/comment_threads", payload, {
     method: "POST",
   });
 }
 
-export async function getChartCommentThreadResponses(commentThread: string) {
-  return await fetchApiData(`chart/comment_threads/${commentThread}`);
+export async function getChartCommentThreadResponses(commentThreadId: string) {
+  return await fetchApiData(`chart/comment_threads/${commentThreadId}`);
+}
+
+export async function postChartCommentThreadResponses(
+  commentThreadId: string,
+  comment: TComment
+) {
+  const { userName: user_name, text } = comment;
+  const payload = {
+    comment: {
+      user_name,
+      text,
+    },
+  };
+
+  return await fetchApiData(
+    `chart/comment_threads/${commentThreadId}/respond`,
+    payload,
+    { method: "POST" }
+  );
 }
 
 export async function getShareLink() {

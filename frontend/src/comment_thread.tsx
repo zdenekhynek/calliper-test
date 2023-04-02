@@ -1,10 +1,13 @@
 import { useQuery } from "react-query";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState, FormEvent } from "react";
 
 import Loader from "./loader";
 import Error from "./error";
 import useOutsideClick from "./use_click_outside";
-import { getChartCommentThreadResponses } from "./fetch_data";
+import {
+  getChartCommentThreadResponses,
+  postChartCommentThreadResponses,
+} from "./fetch_data";
 import { TCommentThread, TCommentThreadResponse, TComment } from "./types";
 
 export function CommentThreadComment(comment: TComment) {
@@ -32,19 +35,43 @@ export function CommentThreadPreview(thread: TCommentThreadResponse) {
   );
 }
 
-export function CommentThreadDetail(thread: TCommentThreadResponse) {
-  const { comments } = thread;
+export function CommentThreadDetail({
+  comments,
+  onReply,
+}: TCommentThreadResponse & { onReply: Function }) {
+  console.log("onReply", onReply);
+  const [content, setContent] = useState("");
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    setContent("");
+    if (onReply && typeof onReply === "function") {
+      const { reply } = evt.target as any;
+      onReply(reply.value);
+    }
+  };
 
   return (
-    <ul>
-      {comments.map((comment, i) => {
-        return (
-          <li key={i}>
-            <CommentThreadComment {...comment} />
-          </li>
-        );
-      })}
-    </ul>
+    <div>
+      <ul>
+        {comments.map((comment, i) => {
+          return (
+            <li key={i}>
+              <CommentThreadComment {...comment} />
+            </li>
+          );
+        })}
+      </ul>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          name="reply"
+          value={content}
+          onChange={(evt) => setContent(evt.target.value)}
+          placeholder="Write a reply..."
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 }
 
@@ -52,7 +79,9 @@ export default function CommentThread({
   id,
   chartDataPoint,
   commentsCount,
-}: TCommentThread) {
+  userName,
+  onReply,
+}: TCommentThread & { userName: string; onReply: Function }) {
   const [isPreviewed, setIsPreviewed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
@@ -65,7 +94,7 @@ export default function CommentThread({
   //  fetch thread data only if we're displaying comments
   const shouldLoadData = isPreviewed || isOpen;
 
-  const { data, isLoading, error, isError } = useQuery({
+  const { data, isLoading, error, isError, refetch } = useQuery({
     retry: 0,
     queryKey: [id],
     enabled: shouldLoadData,
@@ -81,6 +110,17 @@ export default function CommentThread({
     setIsOpen(true);
   }, []);
 
+  const handleAddCommentThreadReply = async (reply: string) => {
+    const comment = { userName: "fda", text: reply };
+    await postChartCommentThreadResponses(id, comment);
+    refetch();
+
+    //  let parent component no
+    if (onReply && typeof onReply === "function") {
+      onReply();
+    }
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -88,8 +128,6 @@ export default function CommentThread({
   if (isError && error) {
     return <Error msg={error.toString()} />;
   }
-
-  console.log("data", data);
 
   return (
     <div
@@ -102,7 +140,9 @@ export default function CommentThread({
       {isPreviewed && !isOpen && data.comments && (
         <CommentThreadPreview {...data} />
       )}
-      {isOpen && data.comments && <CommentThreadDetail {...data} />}
+      {isOpen && data.comments && (
+        <CommentThreadDetail onReply={handleAddCommentThreadReply} {...data} />
+      )}
     </div>
   );
 }

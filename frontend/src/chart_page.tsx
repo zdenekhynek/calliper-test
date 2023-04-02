@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "react-query";
 
 import Loader from "./loader";
@@ -11,6 +12,7 @@ import {
 import { TCommentThread } from "./types";
 
 export default function ChartPage() {
+  const [userName] = useState(() => "Steve");
   const { data, isLoading, error, isError } = useQuery({
     retry: 0,
     queryKey: ["chart"],
@@ -38,6 +40,12 @@ export default function ChartPage() {
     refetch();
   };
 
+  const handleAddCommentThreadResponse = async () => {
+    //  not so great to refetch
+    //  but good-enough for take-home
+    refetch();
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -52,7 +60,12 @@ export default function ChartPage() {
       <button onClick={handleAddCommentThread}>Add comment thread</button>
       {commentThreads &&
         commentThreads.map((thread: TCommentThread) => (
-          <CommentThread key={thread.id} {...thread} />
+          <CommentThread
+            key={thread.id}
+            userName={userName}
+            onReply={handleAddCommentThreadResponse}
+            {...thread}
+          />
         ))}
     </div>
   );
