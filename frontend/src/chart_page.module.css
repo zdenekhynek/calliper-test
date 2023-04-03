@@ -1,0 +1,45 @@
+.chartPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #E3E8EF;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+  background-color: #fff;
+  border-bottom: 1px solid #f1f2f6;
+}
+
+.chartWrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section {
+  border: 1px solid #f1f2f6;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 60px 40px;
+}
+
+.chart {
+  position: relative;
+  width: 800px;
+  height: 600px;
+}
+
+.commentSpots {
+  position: relative;
+}
+
+.commentSpot {
+  position: absolute;
+}

@@ -1,0 +1,29 @@
+.reply {
+  position: relative;
+}
+
+.textArea {
+  border: 0px;
+  border-radius: 8px;
+  padding: 12px;
+  width: calc(100% - 24px);
+  background-color: #eee;
+  font-family: inherit;
+}
+
+.submitBtn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #e3e8ef;
+  border: 0;
+  position: absolute;
+  bottom: 14px;
+  right: 12px;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+.submitBtn:hover {
+  color: #e3e8ef;
+  background-color: #000;
+}

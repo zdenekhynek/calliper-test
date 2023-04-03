@@ -1,0 +1,31 @@
+.commentThread {
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 4px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #000;
+  border-radius: 14px 14px 14px 0%;
+  transform: translate(2px, -28px);
+  text-align: center;
+  cursor: pointer;
+}
+
+.commentThreadPreviewed {
+  width: 120px;
+}
+
+.commentThreadOpen {
+  width: 120px;
+  padding: 12px;
+  height: auto;
+  transform: translate(2px, -100%);
+}
+
+.header {
+  display: flex;
+}
+
+.header > *:first-child:not(:last-child) {
+  margin-right: 8px;
+}

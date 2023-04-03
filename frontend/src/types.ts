@@ -16,7 +16,7 @@ export type TChartDataPoint = {
 export type TCommentThread = {
   id: string;
   commentsCount: number;
-  chartDataPoint: TChartDataPoint[];
+  chartDataPoint: TChartDataPoint;
 };
 
 export type TComment = {

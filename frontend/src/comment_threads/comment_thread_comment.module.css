@@ -1,0 +1,15 @@
+.comment {
+  display: flex;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.username {
+  margin-right: 4px;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.text {
+  text-align: left;
+}
