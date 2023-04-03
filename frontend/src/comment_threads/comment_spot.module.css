@@ -6,13 +6,13 @@
   border-radius: 14px 14px 14px 0%;
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.2);
-  transform: translate(2px, -14px);
+  transform: translate(2px, -16px);
 }
 .spot:hover:not(.spotOpen) {
   transition: 0.3s all;
   width: 28px;
   height: 28px;
-  transform: translate(2px, -28px);
+  transform: translate(2px, -30px);
 }
 
 .spotOpen {
@@ -21,7 +21,7 @@
   height: 70px;
   border: 1px solid #000;
   background-color: #fff;
-  transform: translate(2px, -70px);
+  transform: translate(2px, -72px);
   z-index: 10;
 }
 

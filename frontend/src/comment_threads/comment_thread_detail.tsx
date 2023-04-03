@@ -13,7 +13,7 @@ export default function CommentThreadDetail({
       <ul className={styles.list}>
         {comments.map((comment, i) => {
           return (
-            <li key={i}>
+            <li key={i} className={styles.listItem}>
               <CommentThreadComment {...comment} />
             </li>
           );

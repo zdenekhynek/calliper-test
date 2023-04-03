@@ -6,17 +6,18 @@
   height: 14px;
   border: 1px solid #000;
   border-radius: 14px 14px 14px 0%;
-  transform: translate(2px, -28px);
+  transform: translate(2px, -100%);
   text-align: center;
   cursor: pointer;
 }
 
 .commentThreadPreviewed {
   width: 120px;
+  height: auto;
 }
 
 .commentThreadOpen {
-  width: 120px;
+  width: 160px;
   padding: 12px;
   height: auto;
   transform: translate(2px, -100%);

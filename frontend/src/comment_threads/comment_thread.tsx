@@ -33,7 +33,12 @@ export default function CommentThread({
   //  fetch thread data only if we're displaying comments
   const shouldLoadData = isPreviewed || isOpen;
 
-  const { data, error, isError, refetch } = useQuery({
+  const {
+    data = {},
+    error,
+    isError,
+    refetch,
+  } = useQuery({
     retry: 0,
     queryKey: [id],
     enabled: shouldLoadData,
@@ -79,7 +84,7 @@ export default function CommentThread({
     >
       <div className={styles.header}>
         {!isPreviewed && !isOpen && <span>{commentsCount}</span>}
-        {isPreviewed && !isOpen && data && data.comments && (
+        {isPreviewed && !isOpen && data.comments && (
           <CommentThreadPreview {...data} />
         )}
       </div>
