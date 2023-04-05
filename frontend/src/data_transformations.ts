@@ -9,6 +9,7 @@ import {
   TCommentThreadsResponse,
   TCommentThread,
 } from "./types";
+import { HEIGHT, WIDTH } from "./bar_chart/bar_chart";
 
 export function addFeatureTotals(
   data: TChartCountryFeatures[]
@@ -53,7 +54,7 @@ export function extendFeaturesWithScales(
   }
 
   return data.map((d) => {
-    let currY = 500;
+    let currY = HEIGHT;
 
     const { country } = d;
     const x0 = xScale(country) || 0;
@@ -83,12 +84,12 @@ export function transformChartData(data: TChartCountryFeatures[] = []) {
 
   const xScale = scaleBand()
     .domain(dataWithTotals.map((d) => d.country))
-    .range([0, 800])
+    .range([0, WIDTH])
     .paddingInner(0.25)
     .paddingOuter(0.25)
     .align(0.5)
     .round(true);
-  const yScale = scaleLinear().domain([0, maxTotals]).range([0, 500]);
+  const yScale = scaleLinear().domain([0, maxTotals]).range([0, HEIGHT]);
   const colorScale = scaleLinear<string>()
     .domain([0, 5])
     .range(["#fba204", "#1b186c", "#b9afd5", "#5a2a53"]);

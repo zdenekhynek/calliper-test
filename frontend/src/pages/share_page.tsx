@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 
 import Loader from "../loader";
 import Error from "../error";
-import BarChart from "../bar_chart/bar_chart";
+import BarChart, { HEIGHT, WIDTH } from "../bar_chart/bar_chart";
 import { getShareData } from "../fetch_data";
 import { transformChartData } from "../data_transformations";
 

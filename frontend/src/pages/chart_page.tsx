@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import BarChart from "../bar_chart/bar_chart";
+import BarChart, { HEIGHT, WIDTH } from "../bar_chart/bar_chart";
 import Loader from "../loader";
 import Error from "../error";
 import CommentThread from "../comment_threads/comment_thread";
@@ -80,7 +80,10 @@ export default function ChartPage() {
             </div>
           </div>
           <div className={styles.sectionContent}>
-            <div className={styles.chart}>
+            <div
+              className={styles.chart}
+              style={{ width: WIDTH, height: HEIGHT }}
+            >
               <BarChart data={chartData} />
               <div className={styles.commentSpots}>
                 {commentSpots.map((spot, i: number) => {
