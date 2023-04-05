@@ -5,12 +5,7 @@ import {
   getChartData,
   getChartCommentThreadResponses,
 } from "./fetch_data";
-import {
-  TChartDataFeature,
-  TCountry,
-  TCommentThreadsResponse,
-  TChartCountryFeatures,
-} from "./types";
+import { TCommentThreadsResponse, TChartCountryFeatures } from "./types";
 
 export function useChartDataQuery() {
   return useQuery<TChartCountryFeatures[]>({
@@ -45,4 +40,3 @@ export function useChartCommentThreadResponsesQuery(
     },
   });
 }
-

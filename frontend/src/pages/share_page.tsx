@@ -7,7 +7,7 @@ import BarChart from "../bar_chart/bar_chart";
 import { getShareData } from "../fetch_data";
 import { transformChartData } from "../data_transformations";
 
-import styles from "./share_page.module.css";
+import styles from "./chart_page.module.css";
 
 export default function SharePage() {
   const { shareId } = useParams();
@@ -36,14 +36,19 @@ export default function SharePage() {
   }
 
   return (
-    <div>
-      <div className={styles.section}>
-        <div className={styles.sectionHeader}>
-          <h2>Fast-food sales across Western Europe</h2>
-        </div>
-        <div className={styles.sectionContent}>
-          <div className={styles.chart}>
-            <BarChart data={chartData} />
+    <div data-testid="share-page" className={styles.chartPage}>
+      <div className={styles.chartWrapper}>
+        <div className={styles.section}>
+          <div className={styles.sectionHeader}>
+            <h2>Fast-food sales across Western Europe</h2>
+          </div>
+          <div className={styles.sectionContent}>
+            <div
+              className={styles.chart}
+              style={{ width: WIDTH, height: HEIGHT }}
+            >
+              <BarChart data={chartData} />
+            </div>
           </div>
         </div>
       </div>

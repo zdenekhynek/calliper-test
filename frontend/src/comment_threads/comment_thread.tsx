@@ -1,4 +1,3 @@
-import { useQuery } from "react-query";
 import { useCallback, useRef, useState } from "react";
 import cn from "classnames";
 
@@ -6,10 +5,7 @@ import Error from "../error";
 import useOutsideClick from "../use_click_outside";
 import CommentThreadPreview from "./comment_thread_preview";
 import CommentThreadDetail from "./comment_thread_detail";
-import {
-  getChartCommentThreadResponses,
-  postChartCommentThreadResponses,
-} from "../fetch_data";
+import { postChartCommentThreadResponses } from "../fetch_data";
 import { TCommentThread } from "../types";
 
 import styles from "./comment_thread.module.css";
@@ -17,7 +13,6 @@ import { useChartCommentThreadResponsesQuery } from "../queries";
 
 export default function CommentThread({
   id,
-  chartDataPoint,
   commentsCount,
   userName,
   onReply,
