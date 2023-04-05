@@ -1,0 +1,41 @@
+.sharePage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #e4e8ea;
+}
+
+.chartWrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section {
+  border: 1px solid #f1f2f6;
+  border-radius: 8px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f8fafc;
+  color: #535c6b;
+}
+
+.sectionContent {
+  border: 1px solid #f1f2f6;
+  background-color: #fff;
+  border-radius: 0px 0px 8px 8px;
+  padding: 60px 40px;
+}
+
+.chart {
+  position: relative;
+  width: 800px;
+  height: 500px;
+}

@@ -7,12 +7,14 @@
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.2);
   transform: translate(2px, -16px);
+  opacity: 0.3;
 }
 .spot:hover:not(.spotOpen) {
   transition: 0.3s all;
   width: 28px;
   height: 28px;
   transform: translate(2px, -30px);
+  opacity: 1;
 }
 
 .spotOpen {
@@ -23,6 +25,7 @@
   background-color: #fff;
   transform: translate(2px, -72px);
   z-index: 10;
+  opacity: 1;
 }
 
 .reply {

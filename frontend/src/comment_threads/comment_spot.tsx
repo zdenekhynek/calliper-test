@@ -7,35 +7,46 @@ import CommentReply from "./comment_reply";
 
 import styles from "./comment_spot.module.css";
 
+export interface ICommentSpotProps {
+  feature: TChartDataFeature;
+  country: TCountry;
+  onReply: Function;
+}
+
 export default function CommentSpot({
   feature,
   country,
   onReply,
-}: {
-  feature: TChartDataFeature;
-  country: TCountry;
-  onReply: Function;
-}) {
+}: ICommentSpotProps) {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
 
+  //  close form when clicking away from the component
   const handleOutsideClick = useCallback(() => {
     setIsOpen(false);
   }, []);
   useOutsideClick(wrapperRef, handleOutsideClick);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     setIsOpen(true);
-  };
+  }, []);
 
-  const handleReply = (text: string) => {
-    onReply(feature, country, text);
-  };
+  const handleReply = useCallback(
+    (text: string) => {
+      onReply(feature, country, text);
+    },
+    [onReply, country, feature]
+  );
 
   const classNames = cn(styles.spot, { [styles.spotOpen]: isOpen });
 
   return (
-    <div ref={wrapperRef} className={classNames} onClick={handleClick}>
+    <div
+      role="button"
+      ref={wrapperRef}
+      className={classNames}
+      onClick={handleClick}
+    >
       {isOpen && (
         <div className={styles.reply}>
           <CommentReply placeholder="Comment" onReply={handleReply} />

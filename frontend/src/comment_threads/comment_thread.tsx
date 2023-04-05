@@ -13,6 +13,7 @@ import {
 import { TCommentThread } from "../types";
 
 import styles from "./comment_thread.module.css";
+import { useChartCommentThreadResponsesQuery } from "../queries";
 
 export default function CommentThread({
   id,
@@ -38,14 +39,7 @@ export default function CommentThread({
     error,
     isError,
     refetch,
-  } = useQuery({
-    retry: 0,
-    queryKey: [id],
-    enabled: shouldLoadData,
-    queryFn: async () => {
-      return getChartCommentThreadResponses(id);
-    },
-  });
+  } = useChartCommentThreadResponsesQuery(id, shouldLoadData);
 
   const handleMouseOver = useCallback(() => setIsPreviewed(true), []);
   const handleMouseOut = useCallback(() => setIsPreviewed(false), []);

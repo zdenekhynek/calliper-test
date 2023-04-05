@@ -4,10 +4,14 @@ import CommentThreadComment from "./comment_thread_comment";
 
 import styles from "./comment_thread_detail.module.css";
 
+export interface ICommentThreadDetailProps extends TCommentThreadResponse {
+  onReply: (text: string) => void;
+}
+
 export default function CommentThreadDetail({
   comments,
   onReply,
-}: TCommentThreadResponse & { onReply: Function }) {
+}: ICommentThreadDetailProps) {
   return (
     <div className={styles.commentThreadDetail}>
       <ul className={styles.list}>

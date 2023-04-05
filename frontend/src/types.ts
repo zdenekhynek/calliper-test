@@ -1,7 +1,7 @@
 export type TChartDataFeature =
   | "hotdog"
   | "burger"
-  | "sandwitch"
+  | "sandwich"
   | "kebab"
   | "fries"
   | "donut";
@@ -24,12 +24,6 @@ export type TComment = {
   text: string;
 };
 
-export type TChartDataResponse = {
-  country: TCountry;
-} & {
-  [key in TChartDataFeature]: number;
-}[];
-
 export type TCommentThreadsResponse = TCommentThread[];
 
 export type TCommentThreadResponse = TCommentThread & {
@@ -40,3 +34,42 @@ export type TCreateThreadRequest = {
   comment: TComment;
   data_point: TChartDataPoint;
 };
+
+export type TChartCountryFeature = {
+  name: TChartDataFeature;
+  value: number;
+};
+
+export type TChartCountryFeatures = {
+  country: TCountry;
+} & {
+  [key in TChartDataFeature]?: number;
+};
+
+export type TChartCountryData = {
+  country: TCountry;
+  features: TChartCountryFeature[];
+  total: number;
+};
+
+export type TFoodBarData = {
+  country: TCountry;
+  name: TChartDataFeature;
+  value: number;
+  x0: number;
+  x1: number;
+  y0: number;
+  y1: number;
+  backgroundColor: string;
+  commentThread?: TCommentThread;
+};
+
+export type TCountryBarData = {
+  country: TCountry;
+  features: TFoodBarData[];
+  x0: number;
+  x1: number;
+  total: number;
+};
+
+export type TBarChartData = TCountryBarData[];

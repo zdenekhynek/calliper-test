@@ -1,0 +1,27 @@
+.shareLink {
+  position: relative;
+}
+
+.btn {
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.link {
+  position: absolute;
+  bottom: 0;
+  right: 0px;
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  transition: 5s opacity;
+  opacity: 1;
+  transform: translate(0, 100%);
+}
+
+.linkDisappearing {
+  opacity: 0;
+}

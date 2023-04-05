@@ -95,7 +95,7 @@ export async function postChartCommentThreadResponses(
 }
 
 export async function getShareLink() {
-  return await fetchApiData("chart/shared");
+  return await fetchApiData("share");
 }
 
 export async function getShareData(shareId: string | undefined) {

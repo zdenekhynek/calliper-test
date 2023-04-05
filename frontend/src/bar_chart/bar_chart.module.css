@@ -15,6 +15,24 @@
   width: 100%;
 }
 
+.barLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+.barName {
+  margin-right: 2px;
+  font-size: 14px;
+}
+
+.barValue {
+  opacity: 0.75;
+  font-size: 12px;
+}
+
 .label {
   position: absolute;
   top: 100%;
