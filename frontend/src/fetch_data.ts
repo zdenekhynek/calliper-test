@@ -1,6 +1,8 @@
 import queryString from "query-string";
 import { TChartDataPoint, TComment } from "./types";
 
+export const API_HOSTNAME = process.env.REACT_APP_API_HOSTNAME || "http://localhost:8000";
+
 export function encodeQueryParamsToSearchString(params: {
   [key: string]: string | number;
 }) {
@@ -20,8 +22,7 @@ export async function fetchApiData(
   params = {},
   fetchOpts: any = {}
 ) {
-  const hostName = "http://localhost:8000";
-  const url = new URL(`${hostName}/${path}`);
+  const url = new URL(`${API_HOSTNAME}/${path}`);
 
   if (!fetchOpts.headers) {
     fetchOpts.headers = {};

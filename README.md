@@ -13,6 +13,16 @@ Install [Docker](https://www.docker.com/get-started/).
 
 Run `docker-compose build` - might take a while for frontend to build.
 
+#### Connecting frontend to different backend
+
+Create an `.env` file in the root of the project with the following:
+
+```
+REACT_APP_API_HOSTNAME=<API_HOSTNAME>
+```
+
+See `.env.sample` for an example.
+
 ### Launching
 
 Run `docker-compose up` - wait until yo see "frontend | Compiled successfully!" message; loads in around a 2-3 minutes.
@@ -25,9 +35,9 @@ To launch only the backend - run `docker-compose up backend`
 
 `backend` folder hosts FastAPI backend.
 
-- `test_main.py` has integration tests
-- `services/test_comments_service.py` has unit tests for thes comments service
-- locks are used to prevent race conditions, e.g. multiple comment threads attached to the same chart data point or overwriting the comments
+* `test_main.py` has integration tests
+* `services/test_comments_service.py` has unit tests for thes comments service
+* locks are used to prevent race conditions, e.g. multiple comment threads attached to the same chart data point or overwriting the comments
 
 `frontend` folder hosts React/Typescript frontend.
 
@@ -37,14 +47,14 @@ Bar chart is used for the test task. Countries are on the X axis, Features are o
 
 **Chart Domain**
 
-- `ChartDataPoint` represents single point on the plot
-- `ChartDataFeature` is an enum with all available features
-- `Country` is an enum with all available features
+* `ChartDataPoint` represents single point on the plot
+* `ChartDataFeature` is an enum with all available features
+* `Country` is an enum with all available features
 
 **Comment Domain**
 
-- `CommentThread` represents a single thread attached to chart
-- `Comment` represents an entry within a thread
+* `CommentThread` represents a single thread attached to chart
+* `Comment` represents an entry within a thread
 
 ## Backend API
 
@@ -93,7 +103,6 @@ Returns a list of comment threads,
 type CommentThreadsResponse = CommentThread[]
 ```
 
-
 ### `GET /chart/comment_threads/:thread_id`
 
 Returns a list of comments in a thread
@@ -103,7 +112,6 @@ type CommentThreadResponse = CommentThread & {
     comments: Comment[];
 }
 ```
-
 
 ### `POST /chart/comment_threads`
 
@@ -141,4 +149,3 @@ type ShareResponse = {
 ### `GET /chart/shared/:share_id`
 
 Returns chart data by token, responds with `ChartDataResponse`
-
