@@ -44,6 +44,7 @@ export default function FoodBar({
 
   return (
     <div
+      data-testid="food-bar"
       className={styles.bar}
       style={{ top: y1, width, height, backgroundColor }}
     >

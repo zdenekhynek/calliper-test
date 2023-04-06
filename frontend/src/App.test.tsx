@@ -1,7 +1,29 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-test('renders the app without errors', () => {
-  render(<App />);
+import App from "./App";
+
+const queryClient = new QueryClient();
+
+const renderApp = () => {
+  render(
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  );
+};
+
+describe("App", () => {
+  test("renders the ChartPage by default", async () => {
+    renderApp();
+    expect(await screen.findByTestId("chart-page")).toBeInTheDocument();
+  });
+
+  test("renders the SharePage when navigating to /share/:shareId", async () => {
+    window.history.pushState({}, "SharePage test", "/share/abc");
+
+    renderApp();
+
+    expect(await screen.findByTestId("share-page")).toBeInTheDocument();
+  });
 });

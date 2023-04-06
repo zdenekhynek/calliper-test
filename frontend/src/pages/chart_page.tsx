@@ -91,12 +91,14 @@ export default function ChartPage() {
 
                   return (
                     <div
+                      data-testid="comments-spot"
                       key={i}
                       className={styles.commentSpot}
                       style={{ left: x1, top: y1 }}
                     >
                       {!commentThread && (
                         <CommentSpot
+                          data-testid="comments-spot"
                           feature={name}
                           country={country}
                           onReply={handleAddCommentThread}
@@ -104,6 +106,7 @@ export default function ChartPage() {
                       )}
                       {commentThread && (
                         <CommentThread
+                          data-testid="comments-thread"
                           userName={userName}
                           onReply={handleAddCommentThreadResponse}
                           {...commentThread}

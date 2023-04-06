@@ -12,7 +12,7 @@ export interface IBarChartProps {
 
 export default function BarChart({ data }: IBarChartProps) {
   return (
-    <div className={styles.barChart}>
+    <div data-testid="bar-chart" className={styles.barChart}>
       {data.map((d: any, i: number) => {
         return <CountryBar key={d.country} {...d} />;
       })}
